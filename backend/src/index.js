@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 5000;
 // Connect Database
 connectDB();
 
-// CORS Configuration
+// CORS Configuration (Strict Whitelist for Industry Standard Security)
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:5174',
@@ -33,25 +33,30 @@ const allowedOrigins = [
 
 if (process.env.ALLOWED_ORIGINS) {
   process.env.ALLOWED_ORIGINS.split(',').forEach(url => {
-    if (url.trim()) allowedOrigins.push(url.trim());
+    const trimmed = url.trim().replace(/\/+$/, '');
+    if (trimmed && !allowedOrigins.includes(trimmed)) {
+      allowedOrigins.push(trimmed);
+    }
   });
 }
 
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow requests with no origin (like mobile apps, curl, Postman, etc.)
+    // Allow requests with no origin (mobile apps, Postman, server-to-server)
     if (!origin) return callback(null, true);
+
+    const normalizedOrigin = origin.replace(/\/+$/, '');
+
+    // Check exact whitelist match or local dev
     if (
-      allowedOrigins.includes(origin) ||
-      origin.startsWith('http://localhost:') ||
-      origin.startsWith('http://127.0.0.1:') ||
-      origin.endsWith('.vercel.app') ||
-      origin.endsWith('.onrender.com') ||
-      origin.endsWith('.netlify.app')
+      allowedOrigins.includes(normalizedOrigin) ||
+      normalizedOrigin.startsWith('http://localhost:') ||
+      normalizedOrigin.startsWith('http://127.0.0.1:')
     ) {
       return callback(null, true);
     }
-    callback(new Error(`Not allowed by CORS: ${origin}`));
+
+    callback(new Error(`Security Alert: CORS blocked request from unauthorized origin (${origin})`));
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
