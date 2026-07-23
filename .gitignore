@@ -35,6 +35,7 @@ lerna-debug.log*
 *.sln
 *.sw?
 
-# OS metadata
-.DS_Store
-Thumbs.db
+# Local uploads
+backend/public/uploads/*
+!backend/public/uploads/.gitkeep
+
