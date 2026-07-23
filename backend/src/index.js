@@ -26,6 +26,7 @@ const allowedOrigins = [
   'http://127.0.0.1:5173',
   'http://127.0.0.1:5174',
   'https://abpublicshool.vercel.app',
+  'https://abpublicshool-yzdj.vercel.app',
   process.env.CLIENT_URL,
   process.env.ADMIN_URL
 ].filter(Boolean);
