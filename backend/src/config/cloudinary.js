@@ -11,11 +11,13 @@ const isPlaceholder = (val) => {
   return !val || val.includes('your_') || val === '123456789012345';
 };
 
-if (
+const shouldUseCloudinary = 
+  process.env.USE_CLOUDINARY === 'true' &&
   !isPlaceholder(process.env.CLOUDINARY_CLOUD_NAME) &&
   !isPlaceholder(process.env.CLOUDINARY_API_KEY) &&
-  !isPlaceholder(process.env.CLOUDINARY_API_SECRET)
-) {
+  !isPlaceholder(process.env.CLOUDINARY_API_SECRET);
+
+if (shouldUseCloudinary) {
   // Configure Cloudinary
   cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
