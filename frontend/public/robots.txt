@@ -1,0 +1,7 @@
+# Robots.txt for A B Public School
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+Sitemap: https://abpublicschool.com/sitemap.xml

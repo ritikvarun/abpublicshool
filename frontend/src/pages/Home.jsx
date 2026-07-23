@@ -67,6 +67,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.1] mb-6"
             >
+              <span className="block text-2xl sm:text-3xl text-blue-400 font-bold mb-2 uppercase tracking-wider">A B Public School</span>
               Empowering Young Minds for a <span className="text-accent">Brighter Tomorrow</span>
             </motion.h1>
 
