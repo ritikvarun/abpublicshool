@@ -83,16 +83,15 @@ export default function Gallery() {
     { value: 'sports', label: 'Sports Day' }
   ];
 
-  const combinedItems = [
-    ...gallery.map(item => ({
-      id: item._id,
-      title: item.title,
-      category: item.tag,
-      src: item.image.startsWith('http') ? item.image : `${serverUrl}${item.image}`,
-      desc: item.desc || ''
-    })),
-    ...galleryItems
-  ];
+  const combinedItems = (gallery && gallery.length > 0)
+    ? gallery.map(item => ({
+        id: item._id,
+        title: item.title,
+        category: item.tag || 'campus',
+        src: item.image.startsWith('http') ? item.image : `${serverUrl}${item.image.startsWith('/') ? item.image : '/' + item.image}`,
+        desc: item.desc || ''
+      }))
+    : galleryItems;
 
   const filteredItems = activeFilter === 'all'
     ? combinedItems

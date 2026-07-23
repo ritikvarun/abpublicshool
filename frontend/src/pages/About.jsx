@@ -88,7 +88,12 @@ export default function About() {
             <div className="lg:col-span-4 flex flex-col items-center">
               <div className="h-44 w-44 rounded-full bg-primary/10 overflow-hidden border-4 border-white shadow-xl mb-4">
                 <img 
-                  src={settings?.principalImage || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400"} 
+                  src={(() => {
+                    const img = settings?.aboutPhoto || settings?.principalImage;
+                    if (!img) return "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400";
+                    if (img.startsWith('http')) return img;
+                    return `${serverUrl}${img.startsWith('/') ? img : '/' + img}`;
+                  })()} 
                   alt={`${settings?.principalName || "Dr. Anita Sen"}, Principal`}
                   className="h-full w-full object-cover"
                 />
@@ -163,7 +168,7 @@ export default function About() {
               >
                 <div className="h-64 bg-slate-200 relative overflow-hidden">
                   <img 
-                    src={teacher.image.startsWith('http') ? teacher.image : `${serverUrl}${teacher.image}`} 
+                    src={teacher.image.startsWith('http') ? teacher.image : `${serverUrl}${teacher.image.startsWith('/') ? teacher.image : '/' + teacher.image}`} 
                     alt={teacher.name} 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-350"
                   />
