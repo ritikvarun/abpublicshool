@@ -6,7 +6,6 @@ import { SchoolContext } from '../context/SchoolContext';
 export default function Gallery() {
   const { gallery, serverUrl } = useContext(SchoolContext);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [activeFilter, setActiveFilter] = useState('all');
 
   const galleryItems = [
     {
@@ -74,15 +73,6 @@ export default function Gallery() {
     }
   ];
 
-  const filters = [
-    { value: 'all', label: 'All Photos' },
-    { value: 'campus', label: 'Campus & Library' },
-    { value: 'academics', label: 'Academics' },
-    { value: 'labs', label: 'Science & Tech Labs' },
-    { value: 'events', label: 'Cultural Events' },
-    { value: 'sports', label: 'Sports Day' }
-  ];
-
   const combinedItems = (gallery && gallery.length > 0)
     ? gallery.map(item => ({
         id: item._id,
@@ -97,32 +87,26 @@ export default function Gallery() {
       }))
     : galleryItems;
 
-  const filteredItems = activeFilter === 'all'
-    ? combinedItems
-    : combinedItems.filter(item => item.category === activeFilter);
-
   return (
     <div id="gallery" className="pb-20">
-
-
-      {/* Filter Options */}
-      <section className="py-8 bg-slate-50 border-b border-slate-200 sticky top-[72px] z-30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-2">
-            {filters.map((filter) => (
-              <button
-                key={filter.value}
-                onClick={() => setActiveFilter(filter.value)}
-                className={`px-4.5 py-2 rounded-xl font-semibold text-xs transition-all duration-300 ${
-                  activeFilter === filter.value 
-                    ? 'bg-primary text-white shadow-md shadow-blue-500/25' 
-                    : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
-                }`}
-              >
-                {filter.label}
-              </button>
-            ))}
-          </div>
+      {/* Header Banner */}
+      <section className="bg-slate-900 text-white py-16 sm:py-20 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-3">
+          <motion.h1 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl sm:text-5xl font-extrabold tracking-tight"
+          >
+            School Photo Gallery
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-lg text-slate-300 max-w-2xl mx-auto"
+          >
+            Explore campus life, events, labs, and celebrations at A B Public School.
+          </motion.p>
         </div>
       </section>
 
@@ -134,7 +118,7 @@ export default function Gallery() {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             <AnimatePresence mode="popLayout">
-              {filteredItems.map((item) => (
+              {combinedItems.map((item) => (
                 <motion.div
                   layout
                   initial={{ opacity: 0, scale: 0.9 }}
