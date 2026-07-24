@@ -42,6 +42,10 @@ Go to **Render Dashboard -> Service Settings -> Environment**:
 | `JWT_SECRET` | `super_secret_school_jwt_token_key...` | Secret key for signing admin authentication JWT tokens |
 | `CLIENT_URL` | `https://abpublicshool.vercel.app` | Primary frontend origin for CORS security |
 | `ADMIN_URL` | `https://abpublicshool-yzdj.vercel.app` | Admin panel origin for CORS security |
+| `USE_CLOUDINARY` | `true` | Enable Cloudinary for image uploads |
+| `CLOUDINARY_CLOUD_NAME` | `dfo95t5up` | Cloudinary cloud name |
+| `CLOUDINARY_API_KEY` | `341678137745761` | Cloudinary API key |
+| `CLOUDINARY_API_SECRET` | `WBNJogalV6g2HTv1D8AVTKZhYIo` | Cloudinary API secret |
 
 ---
 
