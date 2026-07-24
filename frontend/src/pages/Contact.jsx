@@ -207,7 +207,7 @@ export default function Contact() {
                       <input
                         type="text"
                         name="name"
-                        placeholder="e.g. Rahul Sharma"
+                        placeholder="Name"
                         value={formData.name}
                         onChange={handleInputChange}
                         required
@@ -223,7 +223,7 @@ export default function Contact() {
                         <input
                           type="tel"
                           name="phone"
-                          placeholder="e.g. 9876543210"
+                          placeholder="Phone No."
                           value={formData.phone}
                           onChange={handleInputChange}
                           required
@@ -237,7 +237,7 @@ export default function Contact() {
                         <input
                           type="text"
                           name="address"
-                          placeholder="e.g. Sector 15, Rohini, Delhi"
+                          placeholder="Address"
                           value={formData.address}
                           onChange={handleInputChange}
                           required
@@ -253,7 +253,7 @@ export default function Contact() {
                       <textarea
                         name="message"
                         rows="2"
-                        placeholder="e.g. Inquiry for Class V admission fee and transport facilities"
+                        placeholder="Class / Query"
                         value={formData.message}
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm font-medium focus:ring-2 focus:ring-emerald-500 outline-none transition-all resize-none"
