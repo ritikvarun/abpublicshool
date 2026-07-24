@@ -12,7 +12,7 @@ const isPlaceholder = (val) => {
 };
 
 const shouldUseCloudinary = 
-  process.env.USE_CLOUDINARY === 'true' &&
+  process.env.USE_CLOUDINARY !== 'false' &&
   !isPlaceholder(process.env.CLOUDINARY_CLOUD_NAME) &&
   !isPlaceholder(process.env.CLOUDINARY_API_KEY) &&
   !isPlaceholder(process.env.CLOUDINARY_API_SECRET);

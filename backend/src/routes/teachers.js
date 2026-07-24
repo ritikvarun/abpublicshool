@@ -29,8 +29,8 @@ router.post('/', authMiddleware, upload.single('image'), async (req, res) => {
       return res.status(400).json({ success: false, message: 'Profile image is required' });
     }
 
-    const imageUrl = isCloudinaryConfigured
-      ? req.file.path
+    const imageUrl = (isCloudinaryConfigured || req.file.path?.startsWith('http'))
+      ? (req.file.path || req.file.secure_url)
       : `/uploads/${req.file.filename}`;
 
     // Parse certs array from string/json if sent
@@ -89,8 +89,8 @@ router.put('/:id', authMiddleware, upload.single('image'), async (req, res) => {
     }
 
     if (req.file) {
-      teacher.image = isCloudinaryConfigured
-        ? req.file.path
+      teacher.image = (isCloudinaryConfigured || req.file.path?.startsWith('http'))
+        ? (req.file.path || req.file.secure_url)
         : `/uploads/${req.file.filename}`;
     }
 

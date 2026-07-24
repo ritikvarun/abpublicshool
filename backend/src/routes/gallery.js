@@ -25,8 +25,8 @@ router.post('/', authMiddleware, upload.single('image'), async (req, res) => {
       return res.status(400).json({ success: false, message: 'Please upload an image' });
     }
 
-    const imageUrl = isCloudinaryConfigured
-      ? req.file.path
+    const imageUrl = (isCloudinaryConfigured || req.file.path?.startsWith('http'))
+      ? (req.file.path || req.file.secure_url)
       : `/uploads/${req.file.filename}`;
 
     const newItem = new Gallery({

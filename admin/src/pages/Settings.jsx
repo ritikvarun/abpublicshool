@@ -158,6 +158,7 @@ function Settings() {
             })
             if (res.data.success) {
                 setAboutPhotoFile(null)
+                if (res.data.aboutPhoto) setAboutPhotoPreview(res.data.aboutPhoto)
                 toast.success('About photo uploaded!')
             }
         } catch (error) {
@@ -186,6 +187,7 @@ function Settings() {
             })
             if (res.data.success) {
                 setHeroBgPhotoFile(null)
+                if (res.data.heroBgPhoto) setHeroBgPhotoPreview(res.data.heroBgPhoto)
                 toast.success('Hero background uploaded!')
             }
         } catch (error) {
@@ -406,7 +408,7 @@ function Settings() {
                             <div className='flex flex-col md:flex-row gap-6 items-start'>
                                 <div className='w-full md:w-[200px] h-[130px] rounded-xl overflow-hidden border border-gray-200 bg-gray-100 flex-shrink-0'>
                                     {heroBgPhotoPreview ? (
-                                        <img src={heroBgPhotoPreview.startsWith('http') ? heroBgPhotoPreview : `${serverUrl}${heroBgPhotoPreview}`} alt='Hero BG' className='w-full h-full object-cover' />
+                                        <img src={heroBgPhotoPreview.startsWith('http') || heroBgPhotoPreview.startsWith('blob:') ? heroBgPhotoPreview : `${serverUrl}${heroBgPhotoPreview.startsWith('/') ? heroBgPhotoPreview : '/' + heroBgPhotoPreview}`} alt='Hero BG' className='w-full h-full object-cover' />
                                     ) : (
                                         <div className='w-full h-full flex items-center justify-center text-gray-400 text-[12px]'>No Photo</div>
                                     )}

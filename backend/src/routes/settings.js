@@ -59,8 +59,8 @@ router.post('/about-photo', authMiddleware, upload.single('photo'), async (req, 
     }
 
     // Use Cloudinary URL if configured, otherwise local static asset path
-    const photoUrl = isCloudinaryConfigured
-      ? req.file.path
+    const photoUrl = (isCloudinaryConfigured || req.file.path?.startsWith('http'))
+      ? (req.file.path || req.file.secure_url)
       : `/uploads/${req.file.filename}`;
 
     settings.aboutPhoto = photoUrl;
@@ -89,8 +89,8 @@ router.post('/hero-bg-photo', authMiddleware, upload.single('photo'), async (req
       settings = new Settings();
     }
 
-    const photoUrl = isCloudinaryConfigured
-      ? req.file.path
+    const photoUrl = (isCloudinaryConfigured || req.file.path?.startsWith('http'))
+      ? (req.file.path || req.file.secure_url)
       : `/uploads/${req.file.filename}`;
 
     settings.heroBgPhoto = photoUrl;

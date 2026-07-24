@@ -88,7 +88,11 @@ export default function Gallery() {
         id: item._id,
         title: item.title,
         category: item.tag || 'campus',
-        src: item.image.startsWith('http') ? item.image : `${serverUrl}${item.image.startsWith('/') ? item.image : '/' + item.image}`,
+        src: (item.image || item.src)
+          ? ((item.image || item.src).startsWith('http')
+              ? (item.image || item.src)
+              : `${serverUrl}${(item.image || item.src).startsWith('/') ? (item.image || item.src) : '/' + (item.image || item.src)}`)
+          : '',
         desc: item.desc || ''
       }))
     : galleryItems;
