@@ -40,6 +40,7 @@ function Settings() {
     const [contactPhone, setContactPhone] = useState('')
     const [contactAddress, setContactAddress] = useState('')
     const [instagramId, setInstagramId] = useState('')
+    const [mapUrl, setMapUrl] = useState('')
 
     // ── 6. Fee Tags ───────────────────────────────────────────
     const [prospectusPrice, setProspectusPrice] = useState('')
@@ -90,6 +91,7 @@ function Settings() {
             setContactPhone(d.contactPhone || '')
             setContactAddress(d.contactAddress || '')
             setInstagramId(d.instagramId || '')
+            setMapUrl(d.mapUrl || '')
             setProspectusPrice(d.basicPrice || d.prospectusPrice || '')
             setProspectusPeriod(d.basicPeriod || d.prospectusPeriod || '')
             setTuitionPrice(d.standardPrice || d.tuitionPrice || '')
@@ -123,7 +125,7 @@ function Settings() {
                 studentsEnrolled, aboutMembers: studentsEnrolled,
                 smartClassrooms, aboutCoaches: smartClassrooms,
                 estYear, estTagline,
-                contactEmail, ownerPhone, receptionPhone, contactPhone, contactAddress, instagramId,
+                contactEmail, ownerPhone, receptionPhone, contactPhone, contactAddress, instagramId, mapUrl,
                 basicPrice: prospectusPrice, basicPeriod: prospectusPeriod,
                 standardPrice: tuitionPrice, standardPeriod: tuitionPeriod,
                 elitePrice: securityPrice, elitePeriod: securityPeriod,
@@ -332,7 +334,7 @@ function Settings() {
                                             <input type='text' className={ic} value={contactPhone} onChange={e => setContactPhone(e.target.value)} placeholder='e.g. +91 11 2345 6789' />
                                         </div>
                                     </div>
-                                    <div className='grid grid-cols-1 md:grid-cols-2 gap-[20px]'>
+                                    <div className='grid grid-cols-1 md:grid-cols-2 gap-[20px] mb-4'>
                                         <div>
                                             <label className={lc}>School Address</label>
                                             <input type='text' className={ic} value={contactAddress} onChange={e => setContactAddress(e.target.value)} placeholder='Sector 15, New Delhi - 110001' required />
@@ -341,6 +343,10 @@ function Settings() {
                                             <label className={lc}>Instagram Username</label>
                                             <input type='text' className={ic} value={instagramId} onChange={e => setInstagramId(e.target.value)} placeholder='e.g. abpublicschool' />
                                         </div>
+                                    </div>
+                                    <div>
+                                        <label className={lc}>Google Maps Share / Embed Link (Optional)</label>
+                                        <input type='text' className={ic} value={mapUrl} onChange={e => setMapUrl(e.target.value)} placeholder='e.g. https://maps.google.com/?q=AB+Public+School' />
                                     </div>
                                 </Section>
 

@@ -317,36 +317,39 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Map Simulation */}
+          {/* Live Google Maps Section */}
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-slate-900 flex items-center space-x-2">
-              <Globe2 className="h-6 w-6 text-primary" />
-              <span>Campus Map Location</span>
-            </h3>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <h3 className="text-2xl font-bold text-slate-900 flex items-center space-x-2">
+                <Globe2 className="h-6 w-6 text-primary" />
+                <span>Campus Location Map</span>
+              </h3>
+              <button 
+                onClick={() => {
+                  const query = encodeURIComponent(settings?.contactAddress || 'A B Public School Sector 15 New Delhi');
+                  const mapTarget = settings?.mapUrl || `https://www.google.com/maps/search/?api=1&query=${query}`;
+                  window.open(mapTarget, '_blank');
+                }}
+                className="px-5 py-2.5 bg-primary hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition-all shadow flex items-center space-x-2 w-fit cursor-pointer"
+              >
+                <MapPin className="h-4 w-4 text-accent" />
+                <span>Open in Google Maps App</span>
+              </button>
+            </div>
             
-            {/* Styled Map Placeholder */}
-            <div className="relative h-[380px] w-full rounded-3xl overflow-hidden border border-slate-200 shadow-inner bg-sky-100 flex items-center justify-center">
-              <div 
-                className="absolute inset-0 bg-cover bg-center opacity-60 filter saturate-50 contrast-125" 
-                style={{ backgroundImage: `url('https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=800')` }}
+            {/* Live Interactive Map Iframe */}
+            <div className="relative h-[420px] w-full rounded-3xl overflow-hidden border border-slate-200 shadow-xl bg-slate-100">
+              <iframe
+                title="School Campus Location Map"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                loading="lazy"
+                allowFullScreen
+                src={settings?.mapUrl && settings.mapUrl.includes('embed') 
+                  ? settings.mapUrl 
+                  : `https://maps.google.com/maps?q=${encodeURIComponent(settings?.contactAddress || 'A B Public School Sector 15 Institutional Area New Delhi')}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
               />
-              <div className="absolute inset-0 bg-blue-500/10" />
-              
-              <div className="relative z-10 text-center bg-white/95 backdrop-blur-md p-8 rounded-3xl shadow-2xl border border-slate-100 max-w-sm space-y-4">
-                <div className="inline-flex p-3 bg-blue-50 text-primary rounded-2xl animate-bounce">
-                  <MapPin className="h-7 w-7 text-accent" />
-                </div>
-                <div className="space-y-1.5">
-                  <h4 className="font-bold text-slate-950">A B Public School</h4>
-                  <p className="text-slate-500 text-xs leading-relaxed">Sector 15, Institutional Area, New Delhi, India</p>
-                </div>
-                <button 
-                  onClick={() => window.open('https://maps.google.com', '_blank')}
-                  className="w-full py-2.5 bg-primary hover:bg-blue-700 text-white rounded-xl text-xs font-semibold transition-colors shadow"
-                >
-                  Open Google Maps
-                </button>
-              </div>
             </div>
           </div>
 
