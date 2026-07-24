@@ -7,6 +7,13 @@ import { toast } from 'react-toastify'
 import Loading from '../component/Loading'
 import { FiSave } from 'react-icons/fi'
 
+const Section = ({ n, title, children }) => (
+    <div>
+        <h3 className='text-[15px] font-bold text-gray-800 border-b border-gray-100 pb-2 mb-4'>{n}. {title}</h3>
+        {children}
+    </div>
+)
+
 function Settings() {
     const { serverUrl } = useContext(authDataContext)
     const [loading, setLoading] = useState(false)
@@ -203,12 +210,6 @@ function Settings() {
     const lc = 'text-[12px] font-semibold text-gray-500 uppercase tracking-wider mb-[6px] block'
     const ta = 'w-full h-[80px] rounded-xl px-[14px] py-[10px] text-gray-800 text-[14px] placeholder-gray-300 outline-none focus:ring-2 focus:ring-gray-300 bg-gray-50 border border-gray-200 resize-none'
 
-    const Section = ({ n, title, children }) => (
-        <div>
-            <h3 className='text-[15px] font-bold text-gray-800 border-b border-gray-100 pb-2 mb-4'>{n}. {title}</h3>
-            {children}
-        </div>
-    )
 
     return (
         <div className='w-[100vw] min-h-[100vh] bg-gray-50'>
