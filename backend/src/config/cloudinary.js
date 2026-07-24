@@ -30,6 +30,11 @@ if (shouldUseCloudinary) {
     params: {
       folder: 'school_website',
       allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'gif'],
+      // Auto convert to WebP/AVIF + auto compress quality + limit max width
+      // This reduces a 4MB image to ~200-400KB automatically for fast loading
+      transformation: [
+        { fetch_format: 'auto', quality: 'auto', width: 1200, crop: 'limit' }
+      ],
     },
   });
   
