@@ -7,8 +7,53 @@ import {
 import { SchoolContext } from '../context/SchoolContext';
 
 export default function Contact() {
-  const { settings } = useContext(SchoolContext);
+  const { settings, submitInquiry } = useContext(SchoolContext);
   const [openFaq, setOpenFaq] = useState(null);
+
+  // Form State
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    address: '',
+    message: ''
+  });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleWhatsAppSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.name.trim() || !formData.phone.trim() || !formData.address.trim()) {
+      alert("Please fill in your Name, Phone Number, and Address.");
+      return;
+    }
+
+    // Submit inquiry to backend
+    if (submitInquiry) {
+      submitInquiry(formData);
+    }
+
+    // Format WhatsApp message
+    const whatsappMsg = `🎓 *NEW SCHOOL INQUIRY / ADMISSION* 🎓\n` +
+      `--------------------------------------\n` +
+      `👤 *Name:* ${formData.name}\n` +
+      `📞 *Phone:* ${formData.phone}\n` +
+      `📍 *Address:* ${formData.address}\n` +
+      (formData.message ? `📝 *Query/Class:* ${formData.message}\n` : '') +
+      `--------------------------------------\n` +
+      `Sent via A B Public School Website`;
+
+    // Target phone number from settings or default
+    const rawPhone = settings?.ownerPhone || settings?.receptionPhone || settings?.contactPhone || '919876543210';
+    let cleanPhone = rawPhone.replace(/\D/g, '');
+    if (cleanPhone.length === 10) cleanPhone = '91' + cleanPhone;
+
+    const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(whatsappMsg)}`;
+    window.open(waUrl, '_blank');
+    setSubmitted(true);
+  };
 
   const steps = [
     { 
@@ -24,7 +69,7 @@ export default function Contact() {
     { 
       icon: UserCheck, 
       title: '3. Admission Confirmation', 
-      desc: 'Undergo interaction round (for senior classes), secure fee verification, and get seat allotted.' 
+      desc: 'Undergo interaction round, secure fee verification, and get seat allotted.' 
     }
   ];
 
@@ -115,6 +160,119 @@ export default function Contact() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
           
+          {/* WhatsApp Direct Inquiry Form */}
+          <div className="bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white rounded-3xl p-8 sm:p-12 shadow-2xl border border-blue-900/50 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+            
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-5 space-y-4">
+                <span className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+                  💬 Direct WhatsApp Inquiry
+                </span>
+                <h3 className="text-3xl font-extrabold text-white leading-tight">
+                  Send Instant Admission Query
+                </h3>
+                <p className="text-slate-300 text-sm leading-relaxed">
+                  Fill in your basic details to connect directly with our admission desk on WhatsApp. We will respond with prospectus, fee structure, and seat availability.
+                </p>
+                <div className="pt-2 text-xs text-slate-400 flex items-center space-x-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping inline-block" />
+                  <span>Admission Desk Online & Responding</span>
+                </div>
+              </div>
+
+              <div className="lg:col-span-7 bg-white text-slate-900 rounded-2xl p-6 sm:p-8 shadow-xl">
+                {submitted ? (
+                  <div className="text-center py-8 space-y-4">
+                    <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-2xl font-bold">
+                      ✓
+                    </div>
+                    <h4 className="text-xl font-bold text-slate-900">Inquiry Sent via WhatsApp!</h4>
+                    <p className="text-slate-500 text-xs max-w-md mx-auto">
+                      Your inquiry message has been formatted and opened in WhatsApp. If it didn't open automatically, click below to try again.
+                    </p>
+                    <button
+                      onClick={() => setSubmitted(false)}
+                      className="px-6 py-2.5 bg-slate-900 text-white text-xs font-bold rounded-xl hover:bg-slate-800 transition-colors"
+                    >
+                      Send Another Inquiry
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleWhatsAppSubmit} className="space-y-4">
+                    <div>
+                      <label className="block text-xs font-bold uppercase text-slate-600 mb-1">
+                        Full Name <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder="e.g. Rahul Sharma"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm font-medium focus:ring-2 focus:ring-emerald-500 outline-none transition-all"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-bold uppercase text-slate-600 mb-1">
+                          WhatsApp Phone Number <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                          type="tel"
+                          name="phone"
+                          placeholder="e.g. 9876543210"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm font-medium focus:ring-2 focus:ring-emerald-500 outline-none transition-all"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold uppercase text-slate-600 mb-1">
+                          Residential Address <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          name="address"
+                          placeholder="e.g. Sector 15, Rohini, Delhi"
+                          value={formData.address}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm font-medium focus:ring-2 focus:ring-emerald-500 outline-none transition-all"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold uppercase text-slate-600 mb-1">
+                        Class / Specific Query (Optional)
+                      </label>
+                      <textarea
+                        name="message"
+                        rows="2"
+                        placeholder="e.g. Inquiry for Class V admission fee and transport facilities"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm font-medium focus:ring-2 focus:ring-emerald-500 outline-none transition-all resize-none"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full py-4 bg-emerald-600 hover:bg-emerald-500 active:scale-[0.99] text-white font-bold text-sm rounded-xl shadow-lg shadow-emerald-600/30 flex items-center justify-center space-x-2 transition-all cursor-pointer"
+                    >
+                      <span>Send Inquiry on WhatsApp</span>
+                      <span className="text-lg">💬</span>
+                    </button>
+                  </form>
+                )}
+              </div>
+            </div>
+          </div>
+
           <div className="space-y-4 text-center max-w-3xl mx-auto mb-12">
             <span className="text-primary font-bold text-sm uppercase tracking-wider">Get in Touch</span>
             <h2 className="text-3xl font-extrabold text-slate-900 mt-2">Reach Us Directly</h2>
