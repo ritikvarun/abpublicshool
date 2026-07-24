@@ -1,14 +1,12 @@
 import React, { useState, useContext } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
-  MapPin, Phone, Mail, Clock, ChevronDown, 
-  HelpCircle, Globe2, FileText, ClipboardCheck, UserCheck
+  MapPin, Globe2, FileText, ClipboardCheck, UserCheck
 } from 'lucide-react';
 import { SchoolContext } from '../context/SchoolContext';
 
 export default function Contact() {
   const { settings, submitInquiry } = useContext(SchoolContext);
-  const [openFaq, setOpenFaq] = useState(null);
 
   // Form State
   const [formData, setFormData] = useState({
@@ -73,32 +71,7 @@ export default function Contact() {
     }
   ];
 
-  const faqs = [
-    {
-      q: 'What are the school timings?',
-      a: 'Pre-Primary (Nursery & Prep): 08:30 AM to 12:30 PM (Mon-Fri).\nPrimary to Middle School (Class I - VIII): 07:50 AM to 02:15 PM (Mon-Sat, 2nd & 4th Saturdays are holidays).'
-    },
-    {
-      q: 'Does the school provide bus services for all locations?',
-      a: 'Yes, we provide transportation across major sectors in Delhi NCR. All buses are equipped with GPS tracking, speed governors, and female attendants.'
-    },
-    {
-      q: 'What is the teacher-to-student ratio?',
-      a: 'We maintain an average classroom ratio of 1:25. This ensures that every child receives proper individual support and tutoring.'
-    },
-    {
-      q: 'How does the school handle medical emergencies?',
-      a: 'We have a fully functional medical room with a full-time certified nurse. In case of major emergencies, we have an active tie-up with local multi-specialty hospitals located within 1 km of the school.'
-    }
-  ];
 
-  const toggleFaq = (idx) => {
-    if (openFaq === idx) {
-      setOpenFaq(null);
-    } else {
-      setOpenFaq(idx);
-    }
-  };
 
   return (
     <div id="contact" className="pb-20">
@@ -311,44 +284,7 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* FAQ Accordion */}
-          <div className="max-w-3xl mx-auto space-y-6">
-            <div className="text-center space-y-3">
-              <span className="text-primary font-bold text-sm uppercase tracking-wider">Got Questions?</span>
-              <h2 className="text-3xl font-extrabold text-slate-900">Frequently Asked Questions</h2>
-            </div>
 
-            <div className="space-y-3">
-              {faqs.map((faq, idx) => (
-                <div key={idx} className="bg-slate-50 border border-slate-100 rounded-2xl overflow-hidden">
-                  <button
-                    onClick={() => toggleFaq(idx)}
-                    className="w-full flex items-center justify-between p-5 text-left font-bold text-slate-900 text-sm sm:text-base hover:bg-slate-100 transition-colors focus:outline-none"
-                  >
-                    <span className="flex items-center space-x-2.5">
-                      <HelpCircle className="h-5 w-5 text-primary shrink-0" />
-                      <span>{faq.q}</span>
-                    </span>
-                    <ChevronDown className={`h-5 w-5 text-slate-400 transition-transform duration-300 ${openFaq === idx ? 'rotate-180' : ''}`} />
-                  </button>
-                  <AnimatePresence>
-                    {openFaq === idx && (
-                      <motion.div
-                        initial={{ height: 0 }}
-                        animate={{ height: 'auto' }}
-                        exit={{ height: 0 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="p-5 pt-0 border-t border-slate-100 text-slate-500 text-sm leading-relaxed whitespace-pre-line bg-white/50">
-                          {faq.a}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ))}
-            </div>
-          </div>
 
         </div>
       </section>
