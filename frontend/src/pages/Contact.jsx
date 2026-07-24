@@ -31,7 +31,7 @@ export default function Contact() {
   const faqs = [
     {
       q: 'What are the school timings?',
-      a: 'Pre-Primary (Nursery & Prep): 08:30 AM to 12:30 PM (Mon-Fri).\nPrimary to Senior Secondary (Class I - XII): 07:50 AM to 02:15 PM (Mon-Sat, 2nd & 4th Saturdays are holidays).'
+      a: 'Pre-Primary (Nursery & Prep): 08:30 AM to 12:30 PM (Mon-Fri).\nPrimary to Middle School (Class I - VIII): 07:50 AM to 02:15 PM (Mon-Sat, 2nd & 4th Saturdays are holidays).'
     },
     {
       q: 'Does the school provide bus services for all locations?',

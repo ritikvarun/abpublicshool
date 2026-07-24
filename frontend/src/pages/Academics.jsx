@@ -23,12 +23,6 @@ export default function Academics() {
       desc: 'Builds core concepts in sciences, secondary language fluency, computer programming basics, and historical inquiries.',
       age: '11 - 13 Years',
       method: 'Interactive Inquiry-based Lessons'
-    },
-    {
-      title: 'Senior Secondary (Classes IX - XII)',
-      desc: 'Prepares students for CBSE Board exams and offers stream options: Science (Medical/Non-Medical), Commerce, and Humanities.',
-      age: '14 - 17 Years',
-      method: 'Advanced Specialization & Practice Tests'
     }
   ];
 
@@ -86,7 +80,7 @@ export default function Academics() {
               <p className="text-slate-500 text-sm">Our educational wings are structured to address stage-specific psychological and intellectual requirements.</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {wings.map((wing, idx) => (
                 <div key={idx} className="bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col justify-between hover:shadow-lg transition-shadow duration-300">
                   <div className="space-y-4">
