@@ -45,8 +45,8 @@ export default function Contact() {
       `--------------------------------------\n` +
       `Sent via A B Public School Website`;
 
-    // Target phone number from settings or default
-    const rawPhone = settings?.ownerPhone || settings?.receptionPhone || settings?.contactPhone || '919876543210';
+    // Target phone number from settings, env or default
+    const rawPhone = settings?.whatsappNumber || settings?.ownerPhone || settings?.receptionPhone || settings?.contactPhone || '919876543210';
     let cleanPhone = rawPhone.replace(/\D/g, '');
     if (cleanPhone.length === 10) cleanPhone = '91' + cleanPhone;
 

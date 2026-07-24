@@ -13,7 +13,11 @@ router.get('/', async (req, res) => {
       settings = new Settings();
       await settings.save();
     }
-    res.status(200).json(settings);
+    let settingsObj = settings.toObject();
+    if (!settingsObj.whatsappNumber) {
+      settingsObj.whatsappNumber = process.env.WHATSAPP_NUMBER || '919876543210';
+    }
+    res.status(200).json(settingsObj);
   } catch (error) {
     console.error('Fetch settings error:', error.message);
     res.status(500).json({ success: false, message: 'Server error retrieving settings' });

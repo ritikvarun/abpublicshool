@@ -31,6 +31,7 @@ const settingsSchema = new mongoose.Schema({
   instagramId: { type: String, default: 'abpublicschool' },
   ownerPhone: { type: String, default: '+91 98765 43210' },
   receptionPhone: { type: String, default: '+91 11 2345 6789' },
+  whatsappNumber: { type: String, default: '919876543210' },
 
   // Principal Message Info
   principalName: { type: String, default: 'Dr. Anita Sen' },

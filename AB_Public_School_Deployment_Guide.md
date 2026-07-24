@@ -46,6 +46,7 @@ Go to **Render Dashboard -> Service Settings -> Environment**:
 | `CLOUDINARY_CLOUD_NAME` | `dfo95t5up` | Cloudinary cloud name |
 | `CLOUDINARY_API_KEY` | `662862151532728` | Cloudinary API key |
 | `CLOUDINARY_API_SECRET` | `ZEDlJwY8QfEskFYhmBpFqM8MmQE` | Cloudinary API secret |
+| `WHATSAPP_NUMBER` | `919876543210` | School WhatsApp number for direct inquiry redirection |
 
 ---
 
