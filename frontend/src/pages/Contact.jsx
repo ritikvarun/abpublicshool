@@ -273,49 +273,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="space-y-4 text-center max-w-3xl mx-auto mb-12">
-            <span className="text-primary font-bold text-sm uppercase tracking-wider">Get in Touch</span>
-            <h2 className="text-3xl font-extrabold text-slate-900 mt-2">Reach Us Directly</h2>
-            <p className="text-slate-500 text-sm">Have a question? Feel free to contact our administrative offices during working hours.</p>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Campus Location */}
-            <div className="flex flex-col items-center text-center p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:bg-white hover:shadow-xl transition-all duration-300">
-              <div className="p-4 bg-blue-50 text-primary rounded-2xl mb-4">
-                <MapPin className="h-6 w-6 text-accent" />
-              </div>
-              <h4 className="font-bold text-slate-900 text-base mb-2">Campus Location</h4>
-              <p className="text-slate-500 text-xs leading-relaxed">{settings?.contactAddress || "Sector 15, Institutional Area, New Delhi, Pin - 110001, India"}</p>
-            </div>
-
-            {/* Phone Enquiries */}
-            <div className="flex flex-col items-center text-center p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:bg-white hover:shadow-xl transition-all duration-300">
-              <div className="p-4 bg-blue-50 text-primary rounded-2xl mb-4">
-                <Phone className="h-6 w-6 text-accent" />
-              </div>
-              <h4 className="font-bold text-slate-900 text-base mb-2">Phone Enquiries</h4>
-              <p className="text-slate-500 text-xs leading-relaxed">{settings?.contactPhone || "+91 11 2345 6789, +91 98765 43210"}</p>
-            </div>
-
-            {/* Email Queries */}
-            <div className="flex flex-col items-center text-center p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:bg-white hover:shadow-xl transition-all duration-300">
-              <div className="p-4 bg-blue-50 text-primary rounded-2xl mb-4">
-                <Mail className="h-6 w-6 text-accent" />
-              </div>
-              <h4 className="font-bold text-slate-900 text-base mb-2">Email Queries</h4>
-              <p className="text-slate-500 text-xs leading-relaxed">{settings?.contactEmail || "info@abpublicschool.edu.in"}</p>
-            </div>
-
-            {/* Office Timings */}
-            <div className="flex flex-col items-center text-center p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:bg-white hover:shadow-xl transition-all duration-300">
-              <div className="p-4 bg-blue-50 text-primary rounded-2xl mb-4">
-                <Clock className="h-6 w-6 text-accent" />
-              </div>
-              <h4 className="font-bold text-slate-900 text-base mb-2">Office Timings</h4>
-              <p className="text-slate-500 text-xs leading-relaxed">Monday - Saturday: 08:30 AM to 02:30 PM</p>
-            </div>
-          </div>
 
           {/* Live Google Maps Section */}
           <div className="space-y-6">
