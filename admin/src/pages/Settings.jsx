@@ -45,6 +45,7 @@ function Settings() {
     const [ownerPhone, setOwnerPhone] = useState('')
     const [receptionPhone, setReceptionPhone] = useState('')
     const [contactPhone, setContactPhone] = useState('')
+    const [whatsappNumber, setWhatsappNumber] = useState('')
     const [contactAddress, setContactAddress] = useState('')
     const [instagramId, setInstagramId] = useState('')
     const [mapUrl, setMapUrl] = useState('')
@@ -96,6 +97,7 @@ function Settings() {
             setOwnerPhone(d.ownerPhone || '')
             setReceptionPhone(d.receptionPhone || '')
             setContactPhone(d.contactPhone || '')
+            setWhatsappNumber(d.whatsappNumber || '')
             setContactAddress(d.contactAddress || '')
             setInstagramId(d.instagramId || '')
             setMapUrl(d.mapUrl || '')
@@ -132,7 +134,7 @@ function Settings() {
                 studentsEnrolled, aboutMembers: studentsEnrolled,
                 smartClassrooms, aboutCoaches: smartClassrooms,
                 estYear, estTagline,
-                contactEmail, ownerPhone, receptionPhone, contactPhone, contactAddress, instagramId, mapUrl,
+                contactEmail, ownerPhone, receptionPhone, contactPhone, whatsappNumber, contactAddress, instagramId, mapUrl,
                 basicPrice: prospectusPrice, basicPeriod: prospectusPeriod,
                 standardPrice: tuitionPrice, standardPeriod: tuitionPeriod,
                 elitePrice: securityPrice, elitePeriod: securityPeriod,
@@ -325,14 +327,18 @@ function Settings() {
                                             <input type='text' className={ic} value={ownerPhone} onChange={e => setOwnerPhone(e.target.value)} placeholder='e.g. 9876543210' />
                                         </div>
                                     </div>
-                                    <div className='grid grid-cols-1 md:grid-cols-2 gap-[20px] mb-4'>
+                                    <div className='grid grid-cols-1 md:grid-cols-3 gap-[20px] mb-4'>
                                         <div>
                                             <label className={lc}>Reception Phone</label>
                                             <input type='text' className={ic} value={receptionPhone} onChange={e => setReceptionPhone(e.target.value)} placeholder='e.g. 9876543211' />
                                         </div>
                                         <div>
-                                            <label className={lc}>Contact Phone (Displayed on Contact Page)</label>
+                                            <label className={lc}>Contact Phone (Page Display)</label>
                                             <input type='text' className={ic} value={contactPhone} onChange={e => setContactPhone(e.target.value)} placeholder='e.g. +91 11 2345 6789' />
+                                        </div>
+                                        <div>
+                                            <label className={lc}>WhatsApp Number (Inquiries)</label>
+                                            <input type='text' className={ic} value={whatsappNumber} onChange={e => setWhatsappNumber(e.target.value)} placeholder='e.g. 9808433521' />
                                         </div>
                                     </div>
                                     <div className='grid grid-cols-1 md:grid-cols-2 gap-[20px] mb-4'>

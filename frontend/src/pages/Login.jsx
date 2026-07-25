@@ -58,7 +58,7 @@ export default function Login() {
 ${formData.message}`;
 
     // Format phone number (remove all non-digit characters)
-    const rawPhone = settings?.ownerPhone || settings?.receptionPhone || settings?.contactPhone || '+91 98765 43210';
+    const rawPhone = settings?.whatsappNumber || settings?.ownerPhone || settings?.receptionPhone || settings?.contactPhone || '919876543210';
     let cleanedPhone = rawPhone.replace(/\D/g, '');
     if (cleanedPhone.length === 10) {
       cleanedPhone = `91${cleanedPhone}`;
