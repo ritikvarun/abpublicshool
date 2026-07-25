@@ -115,7 +115,7 @@ export default function Academics() {
           >
             <div className="text-center max-w-2xl mx-auto space-y-3">
               <h2 className="text-3xl font-extrabold text-slate-900">Subjects Taught</h2>
-              <p className="text-slate-500 text-sm">We provide standard core subjects with updated textbooks and interactive assignments in compliance with CBSE guidelines.</p>
+              <p className="text-slate-500 text-sm">We provide standard core subjects with updated textbooks and interactive assignments in compliance with CBSE & UP Board guidelines.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

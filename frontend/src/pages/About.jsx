@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { motion } from 'framer-motion';
 import { SchoolContext } from '../context/SchoolContext';
+import principalImg from '../assets/principal.jpg';
 
 export default function About() {
   const { settings, teachers, serverUrl } = useContext(SchoolContext);
@@ -23,17 +24,18 @@ export default function About() {
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
             className="text-4xl sm:text-5xl font-extrabold tracking-tight"
           >
             About Our School
           </motion.h1>
           <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-lg text-slate-300 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-slate-400 max-w-2xl mx-auto text-base sm:text-lg"
           >
-            Nurturing knowledge, character, and leadership qualities in every child since 2006.
+            Nurturing young minds, fostering innovation, and building leaders of tomorrow through holistic education.
           </motion.p>
         </div>
       </section>
@@ -50,9 +52,9 @@ export default function About() {
               className="space-y-6"
             >
               <span className="text-primary font-bold text-sm uppercase tracking-wider">Our Legacy</span>
-              <h2 className="text-3xl font-extrabold text-slate-900">Over 20 Years of Academic Dedication</h2>
+              <h2 className="text-3xl font-extrabold text-slate-900">Over 8 Years of Academic Dedication</h2>
               <p className="text-slate-600 leading-relaxed">
-                Founded in 2006, A B Public School has evolved into one of the region's premier educational institutions. We have consistently set benchmarks in educational quality, combining physical classrooms with dynamic modern learning suites.
+                Founded in 2018, A B Public School has evolved into one of the region's premier educational institutions. We have consistently set benchmarks in educational quality, combining physical classrooms with dynamic modern learning suites.
               </p>
               <p className="text-slate-600 leading-relaxed">
                 Our approach emphasizes balanced development. We encourage students to challenge their intellectual potential while embodying characteristics of empathy, tolerance, and respect.
@@ -66,14 +68,14 @@ export default function About() {
               className="grid grid-cols-2 gap-4"
             >
               <div className="p-6 rounded-3xl bg-blue-50 border border-blue-100 space-y-2">
-                <h3 className="text-2xl font-bold text-primary">20+</h3>
+                <h3 className="text-2xl font-bold text-primary">8+</h3>
                 <h4 className="font-bold text-slate-900 text-sm">Years of Excellence</h4>
                 <p className="text-slate-500 text-xs">Delivering proven education and career milestones.</p>
               </div>
               <div className="p-6 rounded-3xl bg-amber-50 border border-amber-100 space-y-2">
                 <h3 className="text-2xl font-bold text-amber-600">100%</h3>
                 <h4 className="font-bold text-slate-900 text-sm">Board Pass Rate</h4>
-                <p className="text-slate-500 text-xs">Consistent record in CBSE board examinations.</p>
+                <p className="text-slate-500 text-xs">Consistent record in CBSE & UP Board examinations.</p>
               </div>
               <div className="p-6 rounded-3xl bg-slate-50 border border-slate-100 space-y-2 col-span-2">
                 <h3 className="text-2xl font-bold text-slate-800">50+</h3>
@@ -90,15 +92,15 @@ export default function About() {
                 <img 
                   src={(() => {
                     const img = settings?.aboutPhoto || settings?.principalImage;
-                    if (!img) return "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400";
+                    if (!img || img.includes('unsplash.com')) return principalImg;
                     if (img.startsWith('http')) return img;
                     return `${serverUrl}${img.startsWith('/') ? img : '/' + img}`;
                   })()} 
-                  alt={`${settings?.principalName || "Dr. Anita Sen"}, Principal`}
+                  alt={`${settings?.principalName || "Mr. Sonu Sir"}, Principal`}
                   className="h-full w-full object-cover"
                 />
               </div>
-              <h3 className="font-bold text-slate-900 text-lg">{settings?.principalName || "Dr. Anita Sen"}</h3>
+              <h3 className="font-bold text-slate-900 text-lg">{settings?.principalName || "Mr. Sonu Sir"}</h3>
               <p className="text-primary text-xs font-semibold">Principal, {settings?.schoolName || settings?.gymName || "A B Public School"}</p>
             </div>
             <div className="lg:col-span-8 space-y-4">
@@ -111,8 +113,6 @@ export default function About() {
           </div>
         </div>
       </section>
-
-
 
       {/* Our Expert Teachers Section */}
       <section className="py-20 bg-white">

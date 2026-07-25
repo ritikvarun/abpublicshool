@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Award } from 'lucide-react';
 import { SchoolContext } from '../context/SchoolContext';
 import schoolHeroImg from '../assets/school_campus_hero.png';
 
@@ -51,16 +50,7 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20 lg:py-32">
           <div className="max-w-3xl">
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }} 
-              animate={{ opacity: 1, x: 0 }} 
-              transition={{ duration: 0.8 }}
-              className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/35 text-blue-300 text-xs font-semibold uppercase tracking-wider mb-6"
-            >
-              <Award className="h-4 w-4 text-accent" />
-              <span>Ranked #1 Co-Ed School in Delhi NCR</span>
-            </motion.div>
-            
+
             <motion.h1 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}

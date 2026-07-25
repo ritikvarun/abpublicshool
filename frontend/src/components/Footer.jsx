@@ -76,7 +76,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed">
-              Empowering young minds with quality education, modern infrastructure, and a values-based curriculum. Over 20 years of academic excellence.
+              Empowering young minds with quality education, modern infrastructure, and a values-based curriculum. Over 8 years of academic excellence.
             </p>
             <div className="flex space-x-3 pt-2">
               {socialLinks.map((social, index) => {

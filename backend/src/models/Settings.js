@@ -21,8 +21,8 @@ const settingsSchema = new mongoose.Schema({
   smartClassrooms: { type: String, default: '30+' },
   successRate: { type: String, default: '100% Board Pass' }, // gym alias (could be board pass rate)
   
-  yearsOfExcellence: { type: String, default: '20+' },
-  aboutYears: { type: String, default: '20' }, // gym alias
+  yearsOfExcellence: { type: String, default: '8+' },
+  aboutYears: { type: String, default: '8' }, // gym alias
 
   // Contact Info
   contactEmail: { type: String, default: 'info@abpublicschool.edu.in' },
@@ -35,7 +35,7 @@ const settingsSchema = new mongoose.Schema({
   mapUrl: { type: String, default: '' },
 
   // Principal Message Info
-  principalName: { type: String, default: 'Dr. Anita Sen' },
+  principalName: { type: String, default: 'Mr. Sonu Sir' },
   principalMessage: { type: String, default: 'Welcome to A B Public School. We believe that every student has unique talents waiting to be unlocked. Our objective is to guide them to discover their capabilities, support their educational journey, and foster a deep sense of social responsibility. We ensure our curriculum adapts to global changes while staying rooted in core values.' },
   principalImage: { type: String, default: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400' },
 
