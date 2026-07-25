@@ -100,7 +100,9 @@ export default function About() {
                   className="h-full w-full object-cover"
                 />
               </div>
-              <h3 className="font-bold text-slate-900 text-lg">{settings?.principalName || "Mr. Sonu Sir"}</h3>
+              <h3 className="font-bold text-slate-900 text-lg">
+                {(!settings?.principalName || settings?.principalName === "Dr. Anita Sen") ? "Mr. Sonu Sir" : settings.principalName}
+              </h3>
               <p className="text-primary text-xs font-semibold">Principal, {settings?.schoolName || settings?.gymName || "A B Public School"}</p>
             </div>
             <div className="lg:col-span-8 space-y-4">

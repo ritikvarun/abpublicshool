@@ -14,6 +14,9 @@ router.get('/', async (req, res) => {
       await settings.save();
     }
     let settingsObj = settings.toObject();
+    if (!settingsObj.principalName || settingsObj.principalName === 'Dr. Anita Sen') {
+      settingsObj.principalName = 'Mr. Sonu Sir';
+    }
     if (!settingsObj.whatsappNumber) {
       settingsObj.whatsappNumber = process.env.WHATSAPP_NUMBER || '919876543210';
     }

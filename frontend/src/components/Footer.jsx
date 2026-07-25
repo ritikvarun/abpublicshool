@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { GraduationCap, Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
+import { Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
 import { SchoolContext } from '../context/SchoolContext';
+import logoImg from '../assets/logo.png';
 
 export default function Footer() {
   const { settings } = useContext(SchoolContext);
@@ -68,9 +69,11 @@ export default function Footer() {
           {/* About Section */}
           <div className="space-y-4">
             <Link to="/" className="flex items-center space-x-3 group">
-              <div className="bg-primary text-white p-2 rounded-xl">
-                <GraduationCap className="h-6 w-6 text-accent" />
-              </div>
+              <img 
+                src={logoImg} 
+                alt="A B Public School Logo" 
+                className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
               <span className="text-xl font-bold tracking-tight text-white group-hover:text-accent transition-colors duration-300">
                 {settings?.schoolName || settings?.gymName || "A B Public School"}
               </span>

@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import { SchoolContext } from './context/SchoolContext';
+import logoImg from './assets/logo.png';
 
 // Page Imports
 import Home from './pages/Home';
@@ -15,47 +16,44 @@ function SplashScreen() {
     <div
       style={{
         position: 'fixed', inset: 0, zIndex: 9999,
-        background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%)',
+        background: '#ffffff',
         display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'center',
-        gap: '24px',
+        gap: '20px',
       }}
     >
       {/* Animated glowing orb behind logo */}
       <div style={{
-        position: 'absolute', width: '320px', height: '320px',
+        position: 'absolute', width: '280px', height: '280px',
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(37,99,235,0.35) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(37,99,235,0.12) 0%, transparent 70%)',
         animation: 'pulse-glow 2s ease-in-out infinite',
       }} />
 
-      {/* Logo Circle */}
+      {/* Logo Image */}
       <div style={{
-        width: '96px', height: '96px', borderRadius: '50%',
-        background: 'linear-gradient(135deg, #2563EB, #1d4ed8)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        boxShadow: '0 0 40px rgba(37,99,235,0.6), 0 0 80px rgba(37,99,235,0.3)',
-        animation: 'scale-in 0.5s ease-out',
         zIndex: 1,
+        animation: 'scale-in 0.5s ease-out',
       }}>
-        <span style={{
-          fontSize: '2.2rem', fontWeight: '900', color: '#fff',
-          fontFamily: 'Poppins, Inter, sans-serif', letterSpacing: '-1px',
-        }}>AB</span>
+        <img 
+          src={logoImg} 
+          alt="A B Public School Logo" 
+          style={{ width: '130px', height: 'auto', objectFit: 'contain' }}
+        />
       </div>
 
       {/* School Name */}
       <div style={{ textAlign: 'center', zIndex: 1, animation: 'fade-up 0.6s ease-out 0.2s both' }}>
         <div style={{
-          fontSize: '1.6rem', fontWeight: '800', color: '#ffffff',
+          fontSize: '1.5rem', fontWeight: '800', color: '#0f172a',
           fontFamily: 'Poppins, Inter, sans-serif', letterSpacing: '-0.5px',
           textTransform: 'uppercase',
         }}>
           A B Public School
         </div>
         <div style={{
-          fontSize: '0.78rem', fontWeight: '600', color: '#93c5fd',
-          letterSpacing: '3px', textTransform: 'uppercase', marginTop: '4px',
+          fontSize: '0.78rem', fontWeight: '600', color: '#2563eb',
+          letterSpacing: '2.5px', textTransform: 'uppercase', marginTop: '4px',
         }}>
           Empowering Young Minds
         </div>
@@ -63,13 +61,13 @@ function SplashScreen() {
 
       {/* Loading dots */}
       <div style={{
-        display: 'flex', gap: '8px', marginTop: '8px', zIndex: 1,
+        display: 'flex', gap: '8px', marginTop: '4px', zIndex: 1,
         animation: 'fade-up 0.6s ease-out 0.4s both',
       }}>
         {[0, 1, 2].map(i => (
           <div key={i} style={{
             width: '8px', height: '8px', borderRadius: '50%',
-            background: '#FBBF24',
+            background: '#2563eb',
             animation: `bounce-dot 1.2s ease-in-out ${i * 0.2}s infinite`,
           }} />
         ))}
@@ -77,20 +75,20 @@ function SplashScreen() {
 
       <style>{`
         @keyframes pulse-glow {
-          0%, 100% { opacity: 0.6; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.12); }
+          0%, 100% { opacity: 0.5; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.1); }
         }
         @keyframes scale-in {
-          from { transform: scale(0.7); opacity: 0; }
+          from { transform: scale(0.85); opacity: 0; }
           to { transform: scale(1); opacity: 1; }
         }
         @keyframes fade-up {
-          from { transform: translateY(16px); opacity: 0; }
+          from { transform: translateY(12px); opacity: 0; }
           to { transform: translateY(0); opacity: 1; }
         }
         @keyframes bounce-dot {
-          0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
-          40% { transform: translateY(-10px); opacity: 1; }
+          0%, 80%, 100% { transform: translateY(0); opacity: 0.3; }
+          40% { transform: translateY(-8px); opacity: 1; }
         }
       `}</style>
     </div>

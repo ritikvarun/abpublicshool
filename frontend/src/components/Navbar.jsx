@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, GraduationCap } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { SchoolContext } from '../context/SchoolContext';
+import logoImg from '../assets/logo.png';
 
 export default function Navbar() {
   const { settings } = useContext(SchoolContext);
@@ -43,9 +44,11 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo & School Name */}
           <Link to="/" className="flex items-center space-x-2.5 lg:space-x-3 group flex-shrink-0" onClick={() => setIsOpen(false)}>
-            <div className="bg-primary text-white p-2 lg:p-2.5 rounded-2xl shadow-lg shadow-blue-500/30 group-hover:scale-105 transition-transform duration-300 flex-shrink-0">
-              <GraduationCap className="h-6 w-6 lg:h-7 lg:w-7 text-accent" />
-            </div>
+            <img 
+              src={logoImg} 
+              alt="A B Public School Logo" 
+              className="h-10 lg:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            />
             <div className="flex flex-col justify-center">
               <span className="block text-lg lg:text-xl font-bold tracking-tight text-slate-900 group-hover:text-primary transition-colors duration-300 whitespace-nowrap">
                 {settings?.schoolName || settings?.gymName || "A B Public School"}
