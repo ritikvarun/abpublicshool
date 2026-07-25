@@ -17,10 +17,13 @@ router.get('/', async (req, res) => {
     if (!settingsObj.principalName || settingsObj.principalName === 'Dr. Anita Sen') {
       settingsObj.principalName = 'Mr. Sonu Sir';
     }
-    if (process.env.WHATSAPP_NUMBER) {
-      settingsObj.whatsappNumber = process.env.WHATSAPP_NUMBER;
-    } else if (!settingsObj.whatsappNumber) {
-      settingsObj.whatsappNumber = '919876543210';
+    // Resolve whatsappNumber priority: DB custom value -> env -> default fallback
+    if (!settingsObj.whatsappNumber || settingsObj.whatsappNumber === '919876543210') {
+      if (process.env.WHATSAPP_NUMBER) {
+        settingsObj.whatsappNumber = process.env.WHATSAPP_NUMBER;
+      } else {
+        settingsObj.whatsappNumber = '919876543210';
+      }
     }
     res.status(200).json(settingsObj);
   } catch (error) {

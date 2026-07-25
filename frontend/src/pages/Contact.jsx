@@ -90,6 +90,7 @@ export default function Contact() {
     // Target phone number from settings, env or default
     const rawPhone = settings?.whatsappNumber || settings?.ownerPhone || settings?.receptionPhone || settings?.contactPhone || '919876543210';
     let cleanPhone = rawPhone.replace(/\D/g, '');
+    if (cleanPhone.startsWith('0')) cleanPhone = cleanPhone.substring(1);
     if (cleanPhone.length === 10) cleanPhone = '91' + cleanPhone;
 
     const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(whatsappMsg)}`;

@@ -60,6 +60,7 @@ ${formData.message}`;
     // Format phone number (remove all non-digit characters)
     const rawPhone = settings?.whatsappNumber || settings?.ownerPhone || settings?.receptionPhone || settings?.contactPhone || '919876543210';
     let cleanedPhone = rawPhone.replace(/\D/g, '');
+    if (cleanedPhone.startsWith('0')) cleanedPhone = cleanedPhone.substring(1);
     if (cleanedPhone.length === 10) {
       cleanedPhone = `91${cleanedPhone}`;
     }
