@@ -5,6 +5,50 @@ import {
 } from 'lucide-react';
 import { SchoolContext } from '../context/SchoolContext';
 
+// Helper function to convert any Google Map input (full <iframe> HTML, share URL, place URL, or address) into a working embed URL
+const getEmbedMapUrl = (mapInput, contactAddress) => {
+  const fallbackAddress = contactAddress || 'A B Public School Sector 15 Institutional Area New Delhi';
+  if (!mapInput || typeof mapInput !== 'string' || !mapInput.trim()) {
+    return `https://maps.google.com/maps?q=${encodeURIComponent(fallbackAddress)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+  }
+
+  let cleaned = mapInput.trim();
+
+  // If user pasted full <iframe> tag (e.g. <iframe src="https://www.google.com/maps/embed?pb=..." ...></iframe>)
+  const srcMatch = cleaned.match(/src=["']([^"']+)["']/i);
+  if (srcMatch && srcMatch[1]) {
+    cleaned = srcMatch[1].trim();
+  }
+
+  // If it's already an embed URL
+  if (cleaned.includes('/maps/embed') || cleaned.includes('output=embed')) {
+    return cleaned;
+  }
+
+  // Try parsing URL if it's a share/place link
+  if (cleaned.startsWith('http://') || cleaned.startsWith('https://')) {
+    try {
+      const urlObj = new URL(cleaned);
+      const qParam = urlObj.searchParams.get('q');
+      if (qParam) {
+        return `https://maps.google.com/maps?q=${encodeURIComponent(qParam)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+      }
+      if (urlObj.pathname.includes('/maps/place/')) {
+        const parts = urlObj.pathname.split('/maps/place/');
+        if (parts[1]) {
+          const placeName = decodeURIComponent(parts[1].split('/')[0].replace(/\+/g, ' '));
+          return `https://maps.google.com/maps?q=${encodeURIComponent(placeName)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+        }
+      }
+    } catch (e) {
+      // Ignore URL parsing error
+    }
+  }
+
+  // Fallback: Embed as a query
+  return `https://maps.google.com/maps?q=${encodeURIComponent(cleaned)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+};
+
 export default function Contact() {
   const { settings, submitInquiry } = useContext(SchoolContext);
 
@@ -257,9 +301,16 @@ export default function Contact() {
               </h3>
               <button 
                 onClick={() => {
-                  const query = encodeURIComponent(settings?.contactAddress || 'A B Public School Sector 15 New Delhi');
-                  const mapTarget = settings?.mapUrl || `https://www.google.com/maps/search/?api=1&query=${query}`;
-                  window.open(mapTarget, '_blank');
+                  let target = settings?.mapUrl || '';
+                  const srcMatch = target.match(/src=["']([^"']+)["']/i);
+                  if (srcMatch && srcMatch[1]) {
+                    target = srcMatch[1].trim();
+                  }
+                  if (!target || target.includes('/maps/embed')) {
+                    const query = encodeURIComponent(settings?.contactAddress || 'A B Public School Sector 15 New Delhi');
+                    target = `https://www.google.com/maps/search/?api=1&query=${query}`;
+                  }
+                  window.open(target, '_blank');
                 }}
                 className="px-5 py-2.5 bg-primary hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition-all shadow flex items-center space-x-2 w-fit cursor-pointer"
               >
@@ -277,9 +328,7 @@ export default function Contact() {
                 style={{ border: 0 }}
                 loading="lazy"
                 allowFullScreen
-                src={settings?.mapUrl && settings.mapUrl.includes('embed') 
-                  ? settings.mapUrl 
-                  : `https://maps.google.com/maps?q=${encodeURIComponent(settings?.contactAddress || 'A B Public School Sector 15 Institutional Area New Delhi')}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+                src={getEmbedMapUrl(settings?.mapUrl, settings?.contactAddress)}
               />
             </div>
           </div>
