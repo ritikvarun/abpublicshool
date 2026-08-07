@@ -73,7 +73,7 @@ Go to **Render Dashboard -> Service Settings -> Environment**:
 
 ## 5. 🚀 Search Engine Optimization (SEO) & Google Ranking
 
-- **Meta Tags & Title:** High-converting meta descriptions, keyword tags, and title (`A B Public School — Best Senior Secondary CBSE School`).
+- **Meta Tags & Title:** High-converting meta descriptions, keyword tags, and title (`A B Public School — Best Middle CBSE School`).
 - **Schema.org Structured Data:** Embedded JSON-LD script for Google Knowledge Graph, address, contact info, and opening hours.
 - **Sitemap & Robots.txt:** Located at `/sitemap.xml` and `/robots.txt`.
 

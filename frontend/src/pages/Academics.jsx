@@ -19,9 +19,9 @@ export default function Academics() {
       method: 'Experiential Project-based Learning'
     },
     {
-      title: 'Senior Secondary (Classes VI - XII)',
-      desc: 'Builds core concepts in sciences, secondary language fluency, computer programming basics, and historical inquiries.',
-      age: '11 - 18 Years',
+      title: 'Middle School (Classes VI - VIII)',
+      desc: 'Builds core concepts in sciences, language fluency, computer programming basics, and historical inquiries.',
+      age: '11 - 14 Years',
       method: 'Interactive Inquiry-based Lessons'
     }
   ];
